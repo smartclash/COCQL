@@ -38,7 +38,7 @@ export default new GraphQLObjectType({
                     large: { type: GraphQLString },
                     medium: { type: GraphQLString },
                 })
-            });
+            })
         },
         clanLevel: { type: GraphQLInt },
         clanPoints: { type: GraphQLInt },
@@ -55,6 +55,93 @@ export default new GraphQLObjectType({
         description: { type: GraphQLString },
         memberList: {
             type: GraphQLList(Player)
-        }
+        },
+        //TODO: Implement WarLog stats
+        // warlog: {
+        //     type: GraphQLList(new GraphQLObjectType({
+        //         name: 'WarLog',
+        //         fields: () => ({
+        //             result: { type: GraphQLString },
+        //             endTime: { type: GraphQLString },
+        //             teamSize: { type: GraphQLInt },
+        //             clan: {
+        //                 tag: { type: GraphQLString },
+        //                 name: { type: GraphQLString },
+        //                 badgeUrls: {
+        //                     small: { type: GraphQLString },
+        //                     large: { type: GraphQLString },
+        //                     medium: { type: GraphQLString }
+        //                 },
+        //               clanLevel: { type: GraphQLInt },
+        //               attacks: { type: GraphQLInt },
+        //               stars: { type: GraphQLInt },
+        //               expEarned: { type: GraphQLInt },
+        //               members: [
+        //                 {
+        //                   tag: { type: GraphQLString },
+        //                   name: { type: GraphQLString },
+        //                   townhallLevel: { type: GraphQLInt },
+        //                   mapPosition: { type: GraphQLInt },
+        //                   attacks: [
+        //                     {
+        //                       attackerTag: { type: GraphQLString },
+        //                       defenderTag: { type: GraphQLString },
+        //                       stars: { type: GraphQLInt },
+        //                       destructionPercentage: { type: GraphQLInt },
+        //                       order: { type: GraphQLInt }
+        //                     }
+        //                   ],
+        //                   opponentAttacks: { type: GraphQLInt },
+        //                   bestOpponentAttack: {
+        //                     attackerTag: { type: GraphQLString },
+        //                     defenderTag: { type: GraphQLString },
+        //                     stars: { type: GraphQLInt },
+        //                     destructionPercentage: { type: GraphQLInt },
+        //                     order: { type: GraphQLInt }
+        //                   }
+        //                 }
+        //               ]
+        //             },
+        //             opponent: {
+        //               tag: { type: GraphQLString },
+        //               name: { type: GraphQLString },
+        //               badgeUrls: {
+        //                 small: { type: GraphQLString },
+        //                 large: { type: GraphQLString },
+        //                 medium: { type: GraphQLString }
+        //               },
+        //               clanLevel: { type: GraphQLInt },
+        //               attacks: { type: GraphQLInt },
+        //               stars: { type: GraphQLInt },
+        //               expEarned: { type: GraphQLInt },
+        //               members: [
+        //                 {
+        //                   tag: { type: GraphQLString },
+        //                   name: { type: GraphQLString },
+        //                   townhallLevel: { type: GraphQLInt },
+        //                   mapPosition: { type: GraphQLInt },
+        //                   attacks: [
+        //                     {
+        //                       attackerTag: { type: GraphQLString },
+        //                       defenderTag: { type: GraphQLString },
+        //                       stars: { type: GraphQLInt },
+        //                       destructionPercentage: { type: GraphQLInt },
+        //                       order: { type: GraphQLInt }
+        //                     }
+        //                   ],
+        //                   opponentAttacks: { type: GraphQLInt },
+        //                   bestOpponentAttack: {
+        //                     attackerTag: { type: GraphQLString },
+        //                     defenderTag: { type: GraphQLString },
+        //                     stars: { type: GraphQLInt },
+        //                     destructionPercentage: { type: GraphQLInt },
+        //                     order: { type: GraphQLInt }
+        //                   }
+        //                 }
+        //               ]
+        //             }
+        //         })
+        //     }))
+        // }
     })
 });

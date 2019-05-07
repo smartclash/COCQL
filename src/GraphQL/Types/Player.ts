@@ -6,6 +6,7 @@ import {
 } from 'graphql';
 import Clan from './Clan';
 import * as axios from 'axios';
+import Leauge from './Leauge';
 
 const _req = axios.default.create({
     baseURL: 'https://api.clashofclans.com/v1/',
@@ -22,36 +23,10 @@ export default new GraphQLObjectType({
         expLevel: { type: GraphQLInt },
         clanRank: { type: GraphQLInt },
         previousClanRank: { type: GraphQLInt },
-        league: {
-            type: new GraphQLObjectType({
-                name: 'Leauge',
-                fields: () => ({
-                    id: { type: GraphQLInt },
-                    name: { type: GraphQLString },
-                    iconUrls: { 
-                        type: new GraphQLObjectType({
-                            name: 'iconURL',
-                            fields: () => ({
-                                small: { type: GraphQLString },
-                                large: { type: GraphQLString },
-                                medium: { type: GraphQLString },
-                            })
-                        })
-                    }
-                })
-            })
-        },
         trophies: { type: GraphQLInt },
         versusTrophies: { type: GraphQLInt },
         attackWins: { type: GraphQLInt },
         defenseWins: { type: GraphQLInt },
-        clan: {
-            type: Clan,
-            async resolve(parent, args) {
-                const { data } = await _req.get(`/clans/${encodeURIComponent(parent.clan.tag)}`);
-                return data;
-            }
-        },
         bestTrophies: { type: GraphQLInt },
         donations: { type: GraphQLInt },
         donationsReceived: { type: GraphQLInt },
@@ -144,6 +119,18 @@ export default new GraphQLObjectType({
                     village: { type: GraphQLString },
                 })
             }))
-        }
+        },
+        clan: {
+            type: Clan,
+            async resolve(parent, args) {
+                if (parent.clan) {
+                    const { data } = await _req.get(`/clans/${encodeURIComponent(parent.clan.tag)}`);
+                    return data;
+                }
+
+                return null;
+            }
+        },
+        league: { type: Leauge },
     })
 });
